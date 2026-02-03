@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	int n, cookies = 0, count = 0;
+	cout << "Enter how many packs of cookies: " << endl;
+	cin >> n;
+	vector<int> vec(n);
+	for (int i = 0; i < n; i++) {
+		cout << "Enter how many cookies in one pack: " << endl;
+		cin >> vec[i];
+		cookies += vec[i];
+	}
+	if (cookies % 2 == 0) {
+		for (int i = 0; i < n; i++) {
+			if (vec[i] % 2 == 0) {
+				count++;
+			}
+		}
+	}
+	else {
+		for (int i = 0; i < n; i++) {
+			if (vec[i] % 2 != 0) {
+				count++;
+			}
+		}
+	}
+	cout << count;
+	
+}

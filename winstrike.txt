@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	int n, count = 0, strike = 0;
+	
+	cout << "Enter how many a numbers (from 1 to 100): " << endl;
+	cin >> n;
+	
+	if (n < 1 || n > 100) {
+		cout << "Enter for next time correct value!" << endl;
+	}
+	
+	vector<int> vec(n);
+	
+	for (int i = 0; i < n; i++) {
+		cout << "Enter 1 or 0 (win or lose): " << endl;
+		cin >> vec[i];
+		if (vec[i] != 1 && vec[i] != 0) {
+			cout << "Enter a correct value next time!";
+			return 0;
+		}
+		if (vec[i] == 1) {
+			count++;
+			if (count > strike) {
+				strike = count;
+			}
+		}
+		else{
+			count = 0;
+		
+		}
+	}
+	cout << strike;
+}

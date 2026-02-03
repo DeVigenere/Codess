@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <bitset>
+
+
+using namespace std;
+
+int main() {
+	string bin;
+	string bin2;
+	cin >> bin;
+	cin >> bin2;
+	int dec = stoi(bin, nullptr, 2);
+	int dec2 = stoi(bin2, nullptr, 2);
+	
+	dec = dec ^ dec2;
+	cout << bitset<7>(dec) << endl;
+	
+
+	
+
+}

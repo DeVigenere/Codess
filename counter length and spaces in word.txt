@@ -1,0 +1,37 @@
+#include <iostream>
+
+
+
+int getLength(char* x) {
+	int sum = 0;
+	for (int i = 0; x[i]; i++) {
+		if(x[i] != ' ')
+		sum++;
+	}
+	return sum;
+}
+
+int getSpaces(char* x) {
+	int sumSpace = 0;
+	for (int i = 0; x[i]; i++) {
+		if (x[i] == ' ') {
+			sumSpace++;
+		}
+	}
+	return sumSpace;
+}
+
+void show(char* x) {
+	std::cout << "Length: " << getLength(x) << std::endl;
+	std::cout << "Spaces: " << getSpaces(x) << std::endl;
+	std::cout << "Phrase: " << x;
+	return;
+}
+
+
+
+int main() {
+	char words[100] = "I should to work more than now!";
+	show(words);
+	
+}

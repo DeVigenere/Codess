@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+int big(string word) {
+	int biggest = 0;
+	int rec = 0;
+	for (int i = 0; word[i] != '\0'; i++) {
+		if (word[i] != ' ') {
+			biggest++;
+		}
+		else {
+			if (biggest > rec) {
+				rec = biggest;
+				biggest = 0;
+			}
+			else {
+				biggest = 0;
+			}
+			
+		}
+	}
+	if (biggest > rec) {
+		rec = biggest;
+	}
+	return rec;
+}
+
+
+int main() {
+	string word = "Art Artem A4124124rtemggg";
+	int champ = big(word);
+	cout << champ;
+	
+}

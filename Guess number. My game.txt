@@ -1,0 +1,35 @@
+#include <iostream>
+#include <time.h>
+
+using namespace std;
+
+int main() {
+	int player;
+	cout << "I'll give you a number from 1 to 10, and you have to guess it. You have 3 turns!" << endl;
+	cout << endl;
+	srand(time(NULL));
+	int computer = rand() % 11;
+	cout << "Try!" << endl;
+	int turn = 0;
+	while (turn != 3) {
+		cin >> player;
+		if (player > computer) {
+			cout << "Lower!" << endl;
+			turn++;
+		}
+		else if (player < computer){
+			cout << "Higher!" << endl;
+			turn++;
+		}
+		else if (player == computer) {
+			cout << "You win!" << endl;
+			return 0;
+		}
+
+	}
+	if (turn == 3) {
+		cout << endl;
+		cout << "I win! It was: " << computer << endl;
+		return 0;
+	}
+}

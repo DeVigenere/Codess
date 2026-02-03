@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+	int n, pass = 0, max = 0;
+	cin >> n;
+	vector<int> in(n);
+	vector<int> out(n);
+
+	for (int i = 0; i < n; i++) {
+		cout << "Enter how many passengers come out: " << endl;
+		cin >> out[i];
+		if (i == 0 && out[i] != 0) {
+			cout << "Wrong enter. Retry again." << endl;
+			return 0;
+		}
+		cout << "Enter how many passengers come in: " << endl;
+		cin >> in[i];
+		if (i == n-1 && in[i] != 0) {
+			cout << "Wrong enter. Retry again." << endl;
+			return 0;
+		}
+		pass -= out[i];
+		pass += in[i];
+		if (pass > max) {
+			max = pass;
+		}
+	}
+	cout << max;
+	return 0;
+}

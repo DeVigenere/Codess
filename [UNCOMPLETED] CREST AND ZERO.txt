@@ -1,0 +1,69 @@
+#include <iostream>
+
+using namespace std;
+
+bool x() {
+	bool choice = false;
+	cout << "Enter your mark X or 0(0 is number): " << endl;
+	char player;
+	cin >> player;
+	if (player == 'x' || player == 'X') {
+		choice = !choice;
+	}
+	return choice;
+}
+
+
+
+
+int main() {
+	srand(time(NULL));
+	const int size = 3;
+	char arr[size][size] = {};
+	bool x_player = x();
+	bool win = false;
+	while (win != 1) {
+		for (int i = 0; i < size; i++) {
+			cout << endl;
+			for (int j = 0; j < size; j++) {
+				if (arr[i][j] == 0) {
+					cout << "|" << " " << "|";
+				}
+				else {
+					cout << "|" << arr[i][j] << "|";
+				}
+
+			}
+		}
+		int turn_stroka, turn_stolbik;
+		cout << "Your turn. Choose stroka and stolbik: ";
+		cin >> turn_stroka >> turn_stolbik;
+		if (turn_stroka > size || turn_stolbik > size) {
+			cout << "Wrong enter!";
+			return 0;
+		}
+		if (arr[turn_stroka - 1][turn_stolbik - 1] != 0) {
+			cout << "This cell already chosed!";
+			return 0;
+		}
+		if (x_player == 1) {
+			arr[turn_stroka-1][turn_stolbik-1] = 'x';
+		}
+		else {
+			arr[turn_stroka-1][turn_stolbik-1] = '0';
+		}
+		int comp_stroka = 0, comp_stolbik = 0;
+		while (arr[comp_stroka][comp_stolbik] != 0) {
+			comp_stroka = rand() % 3; 
+			comp_stolbik = rand() % 3; 
+		}
+		if (x_player == false) {
+			arr[comp_stroka][comp_stolbik] = 'x';
+			}
+		else {
+			arr[comp_stroka][comp_stolbik] = 'o';
+			}
+	}
+	
+	
+}

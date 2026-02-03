@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	int* size;
+	size = new int;
+	cin >> *size;
+	char* symbs;
+	symbs = new char[*size];
+	for (int i = 0; i < *size; i++) {
+		symbs[i] = 'A' + i;
+		cout << symbs[i];
+	}
+	delete[] symbs;
+	delete size;
+}

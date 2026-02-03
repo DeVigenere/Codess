@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	int a, b, max = 0;
+	cin >> a >> b;
+	int arr_a[20] = { 0 };
+	int arr_b[20] = { 0 };
+	for (int i = 1, x = 0; i <= a; i++) {
+		if (a % i == 0) {
+			cout << i << " ";
+			arr_a[x] = i;
+			x++;
+		}
+	}
+	cout << endl;
+	for (int i = 1, x = 0; i <= b; i++) {
+		if (b % i == 0) {
+			cout << i << " ";
+			arr_b[x] = i;
+			x++;
+		}
+	}
+	cout << endl;
+	for (int i = 20 - 1; i > 0; i--) {
+		for (int j = 20 - 1; j > 0; j--) {
+			if (arr_a[i] == arr_b[j] && arr_a[i]!= 0) {
+				cout << arr_a[i];
+				return 0;
+			}
+		}
+	}
+
+}
+	
+

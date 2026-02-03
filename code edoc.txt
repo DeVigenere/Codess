@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+	string word;
+	cin >> word;
+	const char* wordTochar = word.c_str();
+	string drow;
+	cin >> drow;
+	const char* drowTochar = drow.c_str();
+	for (int i = 0; i <= drow.size(); i++) {
+		if (wordTochar[i] == drowTochar[drow.size() - (1+i)]) {
+			continue;
+		}
+		else {
+			cout << "NO";
+			return 0;
+		}
+	}
+	cout << "YES";
+
+
+}

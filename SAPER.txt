@@ -1,0 +1,93 @@
+#include <iostream>
+#include <time.h>
+
+int main() {
+	int count = 0; // Количество бомб
+	int arr[8][8]; // Игровое поле
+	
+	srand(time(NULL)); // Рандом, чтобы массив в дальнейшем заполнился рандомными числами взятыми из времени
+	
+	for (int i = 0; i < 8; i++) { // Вложенный цикл, чтобы заполнить его
+		std::cout << std::endl;
+		for (int j = 0; j < 8; j++) {
+			arr[i][j] = (-1)*(rand()%2);// -1 - это бомба, 0 - отсутствие. -1, чтобы не было стыков, если вокруг клетки одна бомба, чтобы он её не считал в count
+			std::cout << "*" << "|";
+		}
+	}
+	std::cout << std::endl;
+	
+	int stroka_choice;
+	int stolb_choice;
+	int turn = 1;
+	int end = 0;
+	
+	for (int i = 0; i < 8; i++) { // Подсчёт сколько ходов надо до победы
+		for (int j = 0; j < 8; j++) {
+			if (arr[i][j] == 0) {
+				end++;
+			}
+		}
+	}
+	
+	while(turn!=end) // Пока количество ходов не будет количеством не бомб
+	{
+		std::cout << "Enter stroka: ";
+		std::cin >> stroka_choice;
+		
+		if (stroka_choice > 8) {
+			std::cout << "Wrong enter!";
+			return 0;
+		}
+		std::cout << "Enter stolb: ";
+		std::cin >> stolb_choice;
+		
+		if (stolb_choice > 8) {
+			std::cout << "Wrong enter!";
+			return 0;
+		}
+		
+		stroka_choice -= 1;
+		stolb_choice -= 1;
+		
+		if (arr[stroka_choice][stolb_choice] == -1 && turn == 1) { // При первом ходе невозможно проиграть
+			arr[stroka_choice][stolb_choice] = 0;
+		}
+		if (arr[stroka_choice][stolb_choice] == -1 && turn>1) { // Если ход не первый, но игрок попал на бомбу - конец
+			std::cout << "GAME OVER!";
+			return 0;
+		}
+		else {
+			for (int i = 1; i >= -1; i--) { // Если всё же ход не первый и игрок попал не в бомбу, то считаем сколько вокруг него на одну клетку бомб
+				for (int j = 1; j >= -1; j--) {
+					
+					if (arr[stroka_choice - i][stolb_choice - j] == -1) { // Если находим бомбу до увеличиваем count
+						count++;
+					}
+				}
+			}
+			arr[stroka_choice][stolb_choice] = count; // В дальнейшем задаём открытой клетке count
+			for (int i = 0; i < 8; i++) {
+				std::cout << std::endl;
+				for (int j = 0; j < 8; j++) {
+					if (i == stroka_choice && j == stolb_choice) {
+						std::cout << count << "|";
+					}
+					else {
+						if (arr[i][j] > 0) { //Если клетка была открыта и на ней показывается количество бомб, то мы выводим это количество и идём далее
+							std::cout << arr[i][j] << "|";
+							continue;
+						}
+						std::cout << "*" << "|";
+					}
+
+				}
+			}
+		}
+		count = 0;
+		std::cout << std::endl;
+		turn++;
+	}
+	std::cout << "Сongratulation! YOU WIN!" << std::endl;
+	return 0;
+
+}
