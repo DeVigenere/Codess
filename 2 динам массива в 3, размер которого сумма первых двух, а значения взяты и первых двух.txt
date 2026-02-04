@@ -1,0 +1,45 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	srand(time(NULL));
+	int* size;
+	size = new int;
+	int* size2;
+	size2 = new int;
+	*size = (rand() % 5) + 1;
+	*size2 = (rand() % 5) + 1;
+	int* arr;
+	int* arr2;
+	arr = new int[*size];
+	arr2 = new int[*size2];
+	for (int i = 0; i < *size; i++) {
+		arr[i] = rand() % 5;
+		arr2[i] = rand() % 5;
+	}
+	int* bigsize;
+	bigsize = new int;
+	*bigsize = *size + *size2;
+	int* arr3;
+	arr3 = new int[*bigsize];
+	cout << *size << endl << *size2 << endl << *bigsize << endl;
+	for (int i = 0; i < *size; i++) {
+		arr3[i] = arr[i];
+	}
+	for (int i = *size, k = 0; i < *bigsize; i++, k++) {
+		arr3[i] = arr2[k];
+	}
+	for (int i = 0; i < *bigsize; i++) {
+		cout << arr3[i] << "|";
+	}
+
+	delete size;
+	delete size2;
+	delete bigsize;
+	delete[] arr;
+	
+
+	
+
+}
